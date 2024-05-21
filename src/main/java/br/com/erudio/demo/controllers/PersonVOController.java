@@ -1,7 +1,6 @@
 package br.com.erudio.demo.controllers;
 
 import br.com.erudio.demo.data.vo.v1.PersonVO;
-import br.com.erudio.demo.data.vo.v1.PersonVOServices;
 import br.com.erudio.demo.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,13 +29,13 @@ public class PersonVOController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public PersonVO create(@RequestBody PersonVO PersonVO) {
-        return service.create(br.com.erudio.demo.data.vo.v1.PersonVO);
+        return service.create(PersonVO);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public PersonVO update(@RequestBody PersonVO PersonVO) {
-        return service.update(br.com.erudio.demo.data.vo.v1.PersonVO);
+        return service.update(PersonVO);
     }
 
     @DeleteMapping(value = "/{id}")
