@@ -1,6 +1,7 @@
 package br.com.erudio.demo.services;
 
 import br.com.erudio.demo.data.vo.v1.PersonVO;
+import br.com.erudio.demo.data.vo.v2.PersonVOV2;
 import br.com.erudio.demo.exceptions.ResourceNotFoundException;
 import br.com.erudio.demo.mapper.DozerMapper;
 import br.com.erudio.demo.model.Person;
@@ -37,6 +38,14 @@ public class PersonServices {
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo = DozerMapper.
                 parseObject(repository.save(entity), PersonVO.class);
+        return vo;
+    }
+
+    public PersonVOV2 createV2(PersonVOV2 personVOV2) {
+        logger.info("Creating one person with V2");
+        var entity = DozerMapper.parseObject(personVOV2, Person.class);
+        var vo = DozerMapper.
+                parseObject(repository.save(entity), PersonVOV2.class);
         return vo;
     }
 
