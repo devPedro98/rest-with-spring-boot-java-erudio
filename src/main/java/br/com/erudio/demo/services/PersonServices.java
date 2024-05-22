@@ -1,7 +1,9 @@
 package br.com.erudio.demo.services;
 
-import br.com.erudio.demo.exceptions.ResourceNotFoundException;
 import br.com.erudio.demo.data.vo.v1.PersonVO;
+import br.com.erudio.demo.exceptions.ResourceNotFoundException;
+import br.com.erudio.demo.mapper.DozerMapper;
+import br.com.erudio.demo.model.Person;
 import br.com.erudio.demo.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,18 +21,23 @@ public class PersonServices {
     public List<PersonVO> findAll() {
         logger.info("Findind all people");
 
-        return repository.findAll();
+        return DozerMapper
+                .parseListObjects(repository.findAll(), PersonVO.class);
     }
 
     public PersonVO findById(Long id) {
         logger.info("Findind one person");
-        return repository.findById(id)
+        var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+        return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
     public PersonVO create(PersonVO person) {
         logger.info("Creating one person");
-        return repository.save(person);
+        var entity = DozerMapper.parseObject(person, Person.class);
+        var vo = DozerMapper.
+                parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
     public PersonVO update(PersonVO person) {
@@ -41,7 +48,9 @@ public class PersonServices {
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        return repository.save(entity);
+        var vo = DozerMapper.
+                parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
     public void delete(Long id) {
