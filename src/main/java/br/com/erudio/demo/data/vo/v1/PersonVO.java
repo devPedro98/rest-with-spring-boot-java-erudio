@@ -1,15 +1,23 @@
 package br.com.erudio.demo.data.vo.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"}) // Essa anotation coloca a ordem que os atributos do json vão ser serializados
 public class PersonVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    //    @JsonProperty("first_name") essa anotation altera o atributo firstName para first_name
     private String firstName;
+    //    @JsonProperty("last_name")
     private String lastName;
     private String address;
+    //    @JsonIgnore essa anotation ignora o atributo gender
     private String gender;
 
     public PersonVO() {
