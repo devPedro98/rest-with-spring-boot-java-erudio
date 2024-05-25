@@ -1,5 +1,6 @@
 package br.com.erudio.demo.data.vo.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
@@ -10,6 +11,7 @@ import java.util.Objects;
 @JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"}) // Essa anotation coloca a ordem que os atributos do json vão ser serializados
 public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
     private static final long serialVersionUID = 1L;
+    @JsonProperty("id")
     @Mapping("id")
     private Long key;
     //    @JsonProperty("first_name") essa anotation altera o atributo firstName para first_name
