@@ -1,7 +1,6 @@
 package br.com.erudio.demo.mapper;
 
 import br.com.erudio.demo.data.vo.v1.PersonVO;
-import br.com.erudio.demo.model.Person;
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 
