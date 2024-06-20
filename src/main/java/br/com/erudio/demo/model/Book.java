@@ -3,14 +3,13 @@ package br.com.erudio.demo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
