@@ -22,7 +22,7 @@ public class User implements UserDetails, Serializable {
     @Column(name = "user_name", unique = true)
     private String userName;
 
-    @Column(name = "full_nane")
+    @Column(name = "full_name")
     private String fullName;
 
     @Column(name = "password")
